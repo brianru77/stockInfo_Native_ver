@@ -102,12 +102,14 @@ export default function App() {
   const silverPerGramKrw = silverPerGramUsd * usdKrw;
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff8f0' }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#e0ecff' }}>
       <ScrollView contentContainerStyle={styles.container}>
         <SideImageSlider />
         <Text style={styles.header}>📈 현금 흐름 지표 페이지</Text>
+        <View style={styles.divider} />
 
         <View style={styles.card}>
+           <SideImageSlider/>
           <Text style={styles.title}>🏅 금</Text>
           <Text style={styles.price}>₩{Math.round(goldPerGramKrw).toLocaleString()} 원</Text>
           <Text style={styles.sub}>${goldPerGramUsd.toFixed(2)} /g</Text>
@@ -116,9 +118,11 @@ export default function App() {
           <Text style={styles.price}>₩{Math.round(silverPerGramKrw).toLocaleString()} 원</Text>
           <Text style={styles.sub}>${silverPerGramUsd.toFixed(2)} /g</Text>
         </View>
+        <View style={styles.divider} />
 
         <Text style={styles.section}>₿ 실시간 비트코인 시세</Text>
         <Text style={styles.btc}>₩{bitcoinPrice?.toLocaleString()} 원 (1 BTC)</Text>
+        <View style={styles.divider} />
 
         <Text style={styles.section}>📊 실시간 시장 데이터</Text>
         {marketData ? (
@@ -138,13 +142,13 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  container: { padding: 20, backgroundColor: '#fff8f0' },
+  container: { padding: 20, backgroundColor: '#f0f6ff' },
   loading: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff8f0' },
   error: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffe5e5' },
   errorText: { color: 'red', fontSize: 16 },
-  header: { fontSize: 22, textAlign: 'center', marginBottom: 30 },
+  header: { fontSize: 22, textAlign: 'center',  fontWeight: 'bold', marginBottom: 30 },
   card: {
-    backgroundColor: '#fff',
+    backgroundColor: '#e0ecff',
     padding: 20,
     borderRadius: 12,
     elevation: 2,
@@ -154,5 +158,8 @@ const styles = StyleSheet.create({
   price: { fontSize: 24, fontWeight: 'bold', color: '#333' },
   sub: { fontSize: 16, color: '#777' },
   section: { fontSize: 20, fontWeight: 'bold', marginTop: 20 },
-  btc: { fontSize: 22, color: '#d17b0f', fontWeight: 'bold', marginBottom: 10 },
+  btc: { fontSize: 22, color: '	#1C1C1C', fontWeight: 'bold', marginBottom: 10 },
+  divider: {height: 1, backgroundColor: '#ccc',  //가로줄, 또는 '#397eff', '#999' 등 원하는 색상
+  borderRadius: 2, marginVertical: 25, width: '100%',
+},
 });

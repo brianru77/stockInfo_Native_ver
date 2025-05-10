@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { Image, StyleSheet, View } from 'react-native';
 
 const images = [
-    require('../assets/images/gold.png'),
-    require('../assets/images/silver.png'),
-    require('../assets/images/bitcoin.png'),
+    require('../assets/images/testing.png'),
+    require('../assets/images/testing2.png'),
+    require('../assets/images/testing3.png'),
 ];
 
 export default function SideImageSlider() {
@@ -26,12 +26,10 @@ export default function SideImageSlider() {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute', // fixed는 없고 absolute 사용
-    top: '18%',
-    right: 10,
-    width: 200, // 모바일에 맞게 크기 조절
-    height: 200,
-    zIndex: 1000,
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    alignSelf: 'center', // 중앙 정렬
   },
   image: {
     width: '100%',
