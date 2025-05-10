@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import SideImageSlider from '../../components/SideImageSlider';
 
 const Gold_Silver_Constant = 31.1034768;
@@ -14,7 +15,7 @@ export default function App() {
   const [silverOz, setSilverOz] = useState<number | null>(null);
   const [usdKrw, setUsdKrw] = useState<number | null>(null);
   const [bitcoinPrice, setBitcoinPrice] = useState<number | null>(null);
-  const [error, setError] = useState<string | null>(null); // ✅ string 또는 null 허용
+  const [error, setError] = useState<string | null>(null);
 
   let usdKrwEX, usdJpy, usdChf, jpyToKrw, chfToKrw;
   if (
@@ -32,7 +33,7 @@ export default function App() {
   }
 
   useEffect(() => {
-    fetch('http://192.168.0.7:4000/market-data') // ← PC IP 주소에 맞게 변경!
+    fetch('http://192.168.0.7:4000/market-data')
       .then(res => res.json())
       .then(data => {
         console.log('📈 실시간 데이터:', data);
@@ -81,9 +82,19 @@ export default function App() {
     return () => clearInterval(timer);
   }, []);
 
-  if (error) return <View style={styles.error}><Text style={styles.errorText}>{error}</Text></View>;
+  if (error)
+    return (
+      <SafeAreaView style={styles.error}>
+        <Text style={styles.errorText}>{error}</Text>
+      </SafeAreaView>
+    );
+
   if (goldOz == null || silverOz == null || usdKrw == null)
-    return <View style={styles.loading}><ActivityIndicator size="large" /></View>;
+    return (
+      <SafeAreaView style={styles.loading}>
+        <ActivityIndicator size="large" />
+      </SafeAreaView>
+    );
 
   const goldPerGramUsd = goldOz / Gold_Silver_Constant;
   const goldPerGramKrw = goldPerGramUsd * usdKrw;
@@ -91,42 +102,44 @@ export default function App() {
   const silverPerGramKrw = silverPerGramUsd * usdKrw;
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <SideImageSlider />
-      <Text style={styles.header}>📈 현금 흐름 지표 페이지</Text>
+    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff8f0' }}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <SideImageSlider />
+        <Text style={styles.header}>📈 현금 흐름 지표 페이지</Text>
 
-      <View style={styles.card}>
-        <Text style={styles.title}>🏅 금</Text>
-        <Text style={styles.price}>₩{Math.round(goldPerGramKrw).toLocaleString()} 원</Text>
-        <Text style={styles.sub}>${goldPerGramUsd.toFixed(2)} /g</Text>
+        <View style={styles.card}>
+          <Text style={styles.title}>🏅 금</Text>
+          <Text style={styles.price}>₩{Math.round(goldPerGramKrw).toLocaleString()} 원</Text>
+          <Text style={styles.sub}>${goldPerGramUsd.toFixed(2)} /g</Text>
 
-        <Text style={styles.title}>🥈 은</Text>
-        <Text style={styles.price}>₩{Math.round(silverPerGramKrw).toLocaleString()} 원</Text>
-        <Text style={styles.sub}>${silverPerGramUsd.toFixed(2)} /g</Text>
-      </View>
-
-      <Text style={styles.section}>₿ 실시간 비트코인 시세</Text>
-      <Text style={styles.btc}>₩{bitcoinPrice?.toLocaleString()} 원 (1 BTC)</Text>
-
-      <Text style={styles.section}>📊 실시간 시장 데이터</Text>
-      {marketData ? (
-        <View>
-          <Text>💵 달러 인덱스: {marketData['DXY/USD']?.price}</Text>
-          <Text>🛢️ WTI 유가: {marketData['WTI/USD']?.price}</Text>
-          <Text>🇺🇸 USD/KRW: {marketData['USD/KRW']?.price}</Text>
-          <Text>🇯🇵 JPY/KRW: {jpyToKrw ? jpyToKrw.toFixed(2) : '불러오는 중'}</Text>
-          <Text>🇨🇭 CHF/KRW: {chfToKrw ? chfToKrw.toFixed(2) : '불러오는 중'}</Text>
+          <Text style={styles.title}>🥈 은</Text>
+          <Text style={styles.price}>₩{Math.round(silverPerGramKrw).toLocaleString()} 원</Text>
+          <Text style={styles.sub}>${silverPerGramUsd.toFixed(2)} /g</Text>
         </View>
-      ) : (
-        <Text>데이터 불러오는 중...</Text>
-      )}
-    </ScrollView>
+
+        <Text style={styles.section}>₿ 실시간 비트코인 시세</Text>
+        <Text style={styles.btc}>₩{bitcoinPrice?.toLocaleString()} 원 (1 BTC)</Text>
+
+        <Text style={styles.section}>📊 실시간 시장 데이터</Text>
+        {marketData ? (
+          <View>
+            <Text>💵 달러 인덱스: {marketData['DXY/USD']?.price}</Text>
+            <Text>🛢️ WTI 유가: {marketData['WTI/USD']?.price}</Text>
+            <Text>🇺🇸 USD/KRW: {marketData['USD/KRW']?.price}</Text>
+            <Text>🇯🇵 JPY/KRW: {jpyToKrw ? jpyToKrw.toFixed(2) : '불러오는 중'}</Text>
+            <Text>🇨🇭 CHF/KRW: {chfToKrw ? chfToKrw.toFixed(2) : '불러오는 중'}</Text>
+          </View>
+        ) : (
+          <Text>데이터 불러오는 중...</Text>
+        )}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: { padding: 20, backgroundColor: '#fff8f0' },
-  loading: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  loading: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff8f0' },
   error: { flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ffe5e5' },
   errorText: { color: 'red', fontSize: 16 },
   header: { fontSize: 22, textAlign: 'center', marginBottom: 30 },
