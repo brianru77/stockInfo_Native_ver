@@ -1,5 +1,21 @@
+# 💰현금 흐름을 실시간으로 빠르게 제공하는 리액트 네이티브 기반 App
+- # 제공되는 데이터
+> ## 금과 은 가격  
+> ## 비트코인 가격  
+> ## 달로 인덱스  
+> ## 국제 유가  
+> ## 달러/원화, 엔/원화, 스위스프랑/원화
+> ## 나스닥, S&P500 지수
+> ## 미국의 현재 기준금리와 10년물 채권금리 
+> ## 일반 CPI와 근원CPI
+> ## 탐욕지수와 공포지수
+> ## cape지수
 
+# 🔔 알람기능 
+> ## 설정해둔 가격에 (금, 은, 비트코인) 도달하면 알림
+> ## 전일 대비 금과 은값의 상승률 표기
+> ## AI데이터 기반 앞으로 1달간 환율 전망치 표기
 
 <p align="center">
-<img src="https://github.com/user-attachments/assets/553f34e6-bbf6-41c7-87de-bb8c05c57e7f">
+<img src="https://github.com/user-attachments/assets/553f34e6-bbf6-41c7-87de-bb8c05c57e7f" width="50%" height="50%">
 </p>
