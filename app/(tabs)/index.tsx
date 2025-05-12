@@ -33,7 +33,8 @@ export default function App() {
   }
 
   useEffect(() => {
-    fetch('http://192.168.0.7:4000/market-data')
+    //fetch('http://192.168.0.7:4000/market-data')
+    fetch('https://2a77-118-91-64-132.ngrok-free.app/market-data')
       .then(res => res.json())
       .then(data => {
         console.log('📈 실시간 데이터:', data);
@@ -127,8 +128,10 @@ export default function App() {
         <Text style={styles.section}>📊 실시간 시장 데이터</Text>
         {marketData ? (
           <View>
-            <Text>💵 달러 인덱스: {marketData['DXY/USD']?.price}</Text>
-            <Text>🛢️ WTI 유가: {marketData['WTI/USD']?.price}</Text>
+            <Text>📊 S&P 500: {marketData['SPX']?.price}</Text>
+            <Text>📊 NASDAQ 100: {marketData['NDX']?.price}</Text>
+            {/* <Text>💵 달러 인덱스: {marketData['DXY/USD']?.price}</Text>
+            <Text>🛢️ WTI 유가: {marketData['WTI/USD']?.price}</Text> */}
             <Text>🇺🇸 USD/KRW: {marketData['USD/KRW']?.price}</Text>
             <Text>🇯🇵 JPY/KRW: {jpyToKrw ? jpyToKrw.toFixed(2) : '불러오는 중'}</Text>
             <Text>🇨🇭 CHF/KRW: {chfToKrw ? chfToKrw.toFixed(2) : '불러오는 중'}</Text>

@@ -2,19 +2,22 @@ const express = require('express');
 const axios = require('axios');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const app = express();
+
+app.use(cors()); // 💡 반드시 추가!
 
 // .env 파일에서 환경변수 읽기
 dotenv.config();
-
-const app = express();
 const PORT = 4000;
 
 app.use(cors()); // 모든 도메인에서 접근 허용
 
 // 가져올 심볼 목록
 const symbols = [
-  'DXY/USD',     // 달러 인덱스
-  'WTI/USD',     // WTI 유가
+  //'DXY/USD',     // 달러 인덱스
+  //'WTI/USD',     // WTI 달러인덱스 및 유가 무료플랜에서는 지원끊김
+  'SPX',        // S&P500
+  'NDX',         // NASDAQ 100
   'USD/KRW',     // 원화 환율
   'USD/JPY',     // 엔화 환율
   'USD/CHF'      // 스위스프랑 환율
