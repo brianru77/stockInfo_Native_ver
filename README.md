@@ -1,4 +1,8 @@
 # 💰현금 흐름 데이터를 실시간으로 알려주는 어플
+<p align="center">
+<img src="https://github.com/user-attachments/assets/553f34e6-bbf6-41c7-87de-bb8c05c57e7f" width="50%" height="50%">
+</p>
+
 - # 메인 데이터
 > ## 금과 은 가격
 >> ### 금과 은의 g당 원화 가격을 실시간으로 표기
@@ -20,6 +24,4 @@
 > ## 금과 은값, 비트코인의 전일 대비 상승률 표기(기준값:전일 종가/오늘 시가)
 > ## AI데이터 기반 앞으로 1달간 환율 전망치 표기
 
-<p align="center">
-<img src="https://github.com/user-attachments/assets/553f34e6-bbf6-41c7-87de-bb8c05c57e7f" width="50%" height="50%">
-</p>
+
