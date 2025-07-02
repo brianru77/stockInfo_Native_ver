@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginBottom: 20,
-    alignSelf: 'center', // 중앙 정렬
+    alignSelf: 'center', //중앙 정렬
   },
   image: {
     width: '100%',
